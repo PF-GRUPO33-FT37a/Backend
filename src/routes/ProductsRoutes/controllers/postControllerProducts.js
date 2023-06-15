@@ -12,6 +12,7 @@ const postControllerProduct = async (data, firebaseUrls) => {
 		stock: data.stock,
 		brand: data.brand,
 		price: data.price,
+		articleCode: data.articleCode,
 	};
 
 	const result = Products.create(product);
