@@ -13,10 +13,11 @@ const postControllerUsers = async(data, firebaseUrls) =>{
         postalCode: data.postalCode,
         city: data.city,
         country: data.country,
-        phoneNumber: data.phoneNumber
+        phoneNumber: data.phoneNumber,
+        date: data.date
     } 
     let infoUser = await Users.create(user);
     return infoUser 
 }
-
+//comentario
 module.exports = postControllerUsers
