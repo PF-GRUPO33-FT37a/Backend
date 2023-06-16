@@ -32,6 +32,10 @@ const usersScheme = new Schema({
         type: String,
         required: true
     },
+    date:{
+        type: String,
+        required:true
+    },
     // purchaseHistory:[{
     //     type: mongoose.Types.ObjectId,
     //     ref: 'transactions',
