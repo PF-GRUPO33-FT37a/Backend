@@ -33,6 +33,5 @@ const getControllerSearch = async (page, query) => {
   return response;
 };
 
-module.exports = getControllerSearch;
 
 module.exports = getControllerSearch;
