@@ -16,7 +16,7 @@ const productSchema = new Schema({
 	gender: {
 		type: String,
 		required: true,
-		enum: ['male', 'female', 'unisex'],
+		enum: ['male', 'female', 'child'],
 	},
 
 	size: {
@@ -32,6 +32,7 @@ const productSchema = new Schema({
 	season: {
 		type: String,
 		required: true,
+		enum: ['spring', 'summer', 'fall', 'winter'],
 	},
 
 	images: {
@@ -58,6 +59,11 @@ const productSchema = new Schema({
 
 	price: {
 		type: Number,
+		required: true,
+	},
+
+	articleCode: {
+		type: String,
 		required: true,
 	},
 });
