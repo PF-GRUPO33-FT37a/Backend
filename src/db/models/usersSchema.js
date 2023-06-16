@@ -24,15 +24,17 @@ const usersScheme = new Schema({
     },
     city:{
         type: String,
-        required: true
     },
     country:{
         type: String,
-        required: true
     },
     phoneNumber:{
-        type: Number,
+        type: String,
         required: true
+    },
+    date:{
+        type: String,
+        required:true
     },
     // purchaseHistory:[{
     //     type: mongoose.Types.ObjectId,
