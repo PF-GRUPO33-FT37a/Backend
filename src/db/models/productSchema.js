@@ -53,7 +53,7 @@ const productSchema = new Schema({
 	},
 
 	brand: {
-		type: String,
+		type: [String],
 		required: true,
 	},
 
