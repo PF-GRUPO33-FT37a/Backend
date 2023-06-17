@@ -15,16 +15,10 @@ const getControllerSearch = async (page, query) => {
   const queryResult = await Products.find(filter);
   const products = [];
   for (const product of queryResult) {
-    const sameCodeProducts = await Products.find({ articleCode: product.articleCode })
-      .select({
-        name: 1,
-        images: { $slice: -1 },
-        size: { $slice: -1 },
-        brand: 1,
-        price: 1,
-        articleCode: 1
-      })
-      .exec();
+    let code = product.articleCode
+    const sameCodeProducts = await Products.find({
+      $and: [{ _id: { $ne: product.id } }, { articleCode: code }],
+    });
     const productWithSameCode = { ...product.toObject(), sameCode: sameCodeProducts };
     delete productWithSameCode._doc;
     products.push(productWithSameCode);
