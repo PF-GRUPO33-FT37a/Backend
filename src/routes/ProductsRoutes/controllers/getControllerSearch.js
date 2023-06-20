@@ -29,7 +29,7 @@ const getControllerSearch = async (page, query) => {
 		})
 			.select({
 				name: 1,
-				images: { $slice: -1 },
+				images: { $slice: 1 },
 				size: { $slice: -1 },
 				brand: 1,
 				price: 1,
