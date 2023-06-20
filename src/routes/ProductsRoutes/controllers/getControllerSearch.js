@@ -35,23 +35,24 @@ const getControllerSearch = async (page, query) => {
 	//   }
 	//   const response = modelateDataPaginado(page, products);
 	// -------
-	const resultProducts = await Products.find(query)
-	let response = []
+	const result = await Products.find(query)
+	let products = []
 
-	for (const i in resultProducts) {
+	for (const i in result) {
 		const sameCode = await Products.find({ ...query,
-			articleCode: resultProducts[i].articleCode,
-			_id: {$ne: resultProducts[i]._id}})
+			articleCode: result[i].articleCode,
+			_id: {$ne: result[i]._id}})
 			
 		const { _id, name, category, gender, size, color, season,
-			images, stock, isActive, brand, price, articleCode, __v } = resultProducts[i]
+			images, stock, isActive, brand, price, articleCode, __v } = result[i]
 
-		response.push({
+		products.push({
 			_id, name, category, gender, size, color, season, images,
 			stock, isActive, brand, price, articleCode, sameCode: sameCode, __v
 		})
 	}
-	
+
+	const response = modelateDataPaginado(page, products)
   	return response;
 };
 
