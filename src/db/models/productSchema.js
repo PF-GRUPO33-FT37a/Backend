@@ -20,7 +20,19 @@ const productSchema = new Schema({
 	},
 
 	size: {
-		type: [String],
+		type: [
+			{
+				size: {
+					type: [String],
+					required: true,
+				},
+				stock: {
+					type: [Number],
+					required: true,
+					min: 0,
+				},
+			},
+		],
 		required: true,
 	},
 

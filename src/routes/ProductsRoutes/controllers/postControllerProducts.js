@@ -1,6 +1,8 @@
 const Products = require('../../../db/models/productSchema');
 
 const postControllerProduct = async (data, firebaseUrls) => {
+	const stockSum = data.size.reduce((acc, obj) => acc + obj.stock, 0);
+
 	const product = {
 		name: data.name,
 		category: data.category,
@@ -9,7 +11,7 @@ const postControllerProduct = async (data, firebaseUrls) => {
 		color: data.color,
 		season: data.season,
 		images: firebaseUrls,
-		stock: data.stock,
+		stock: stockSum,
 		brand: data.brand,
 		price: data.price,
 		articleCode: data.articleCode,
