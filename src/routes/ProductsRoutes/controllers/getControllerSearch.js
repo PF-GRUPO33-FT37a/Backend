@@ -5,7 +5,7 @@ const getControllerSearch = async (page, query) => {
 	const filter = {};
 	for (const key in query) {
 		if (query.hasOwnProperty(key)) {
-			if (['color', 'brand', 'season', 'gender'].includes(key)) {
+			if (['color', 'brand', 'season', 'gender', 'category'].includes(key)) {
 				filter[key] = {
 					$in: query[key].split(','),
 				};
@@ -15,13 +15,14 @@ const getControllerSearch = async (page, query) => {
 				filter[key] = {
 					$regex: new RegExp(`\\b(${regexSizes})\\b`, 'i'),
 				};
-			} else if (['name', 'category'].includes(key)) {
+			} else if (['name'].includes(key)) {
 				filter[key] = { $regex: new RegExp(query[key], 'i') };
 			}
 		}
 	}
 
 	const queryResult = await Products.find(filter);
+
 	const products = [];
 	for (const product of queryResult) {
 		const sameCodeProducts = await Products.find({
