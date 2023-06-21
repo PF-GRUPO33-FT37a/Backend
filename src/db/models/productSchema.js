@@ -23,11 +23,11 @@ const productSchema = new Schema({
 		type: [
 			{
 				size: {
-					type: [String],
+					type: String,
 					required: true,
 				},
 				stock: {
-					type: [Number],
+					type: String,
 					required: true,
 					min: 0,
 				},
@@ -44,7 +44,7 @@ const productSchema = new Schema({
 	season: {
 		type: String,
 		required: true,
-		enum: ['spring', 'summer', 'fall', 'winter'],
+		enum: ['spring', 'summer', 'atumn', 'winter'],
 	},
 
 	images: {
