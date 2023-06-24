@@ -12,9 +12,19 @@ const transactionsSchema = new Schema({
         required: true 
     },
     products:{
-        type: [mongoose.Types.ObjectId],
-        ref: 'products',
-        required: true,
+       type:[
+        {
+            productId:{
+                type: [mongoose.Types.ObjectId],
+                ref: 'products',
+                required: true,
+            },
+            cant:{
+                type: Number,
+                required:true
+            }
+        }
+       ]
     },
     date: {
         type: String,
