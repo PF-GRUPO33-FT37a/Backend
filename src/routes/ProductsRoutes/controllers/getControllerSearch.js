@@ -1,7 +1,7 @@
 const Products = require('../../../db/models/productSchema');
 const modelateDataPaginado = require('../../../utils/modelateDataPaginate');
 
-const getControllerSearch = async (page, query) => {
+const getControllerSearch = async (query) => {
 	const filter = {};
 	for (const key in query) {
 		if (query.hasOwnProperty(key)) {
