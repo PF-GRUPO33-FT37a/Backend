@@ -2,7 +2,6 @@ const getControllerProducts = require('../controllers/getControllerSearch');
 
 const getHandlerSearch = async (req, res) => {
 	try {
-		const { page } = req.query;
 		const query = req.query;
 		const response = await getControllerProducts(page || 1, query);
 		res.status(200).json(response);

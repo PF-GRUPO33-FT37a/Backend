@@ -1,7 +1,7 @@
 const Products = require('../../../db/models/productSchema');
 const modelateDataPaginado = require('../../../utils/modelateDataPaginate');
 
-const getControllerProducts = async (page) => {
+const getControllerProducts = async () => {
 	const allProducts = await Products.find({})
 		.select({
 			name: 1,
@@ -32,8 +32,7 @@ const getControllerProducts = async (page) => {
 		products.push(productWithSameCode);
 	}
 
-	const response = modelateDataPaginado(page, products);
-	return response;
+	return products;
 };
 
 module.exports = getControllerProducts;

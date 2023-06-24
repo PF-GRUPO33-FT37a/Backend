@@ -49,8 +49,7 @@ const getControllerSearch = async (page, query) => {
 		delete productWithSameCode._doc;
 		products.push(productWithSameCode);
 	}
-	const response = modelateDataPaginado(page, products);
-	return response;
+	return products;
 };
 
 module.exports = getControllerSearch;
