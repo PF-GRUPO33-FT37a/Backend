@@ -10,6 +10,7 @@ const router = Router();
 router.use('/users', usersRoutes);
 router.use('/products', productsRoutes);
 router.use('/store', storeRoutes);
-router.use('/reviews', reviewsRoutes)
+router.use('/reviews', reviewsRoutes);
+router.use('/transactions')
 
 module.exports = router;
