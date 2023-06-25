@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const autopopulate = require('mongoose-autopopulate');
 
 const usersScheme = new Schema({
     name:{
@@ -7,8 +8,8 @@ const usersScheme = new Schema({
         required: true
     },
     image:{
-        type: [String],
-        default:["https://st2.depositphotos.com/1523669/6194/i/950/depositphotos_61945927-stock-photo-icon-of-businessman.jpg"]
+        type: String,
+        default:"https://st2.depositphotos.com/1523669/6194/i/950/depositphotos_61945927-stock-photo-icon-of-businessman.jpg"
     },
     email:{
         type: String,
@@ -44,10 +45,11 @@ const usersScheme = new Schema({
         type: String,
         required:true
     },
-    // purchaseHistory:[{
-    //     type: mongoose.Types.ObjectId,
-    //     ref: 'transactions',
-    // }],
+    purchaseHistory:{
+        type: [mongoose.Types.ObjectId],
+        ref: 'Transactions',
+        autopopulate:true
+    },
     isActive:{
         type: Boolean,
         default:true
@@ -64,6 +66,9 @@ const usersScheme = new Schema({
 {
     versionKey: false,
   })
+
+
+  usersScheme.plugin(autopopulate);
 
   usersScheme.index({ email: 1 }, { unique: true });
 
