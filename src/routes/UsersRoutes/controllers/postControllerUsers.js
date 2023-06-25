@@ -1,6 +1,6 @@
 const Users = require('../../../db/models/usersSchema')
 const bcrypt = require('bcryptjs')
-const sendEmail = require('../../../services/nodeMailer')
+const {sendEmail} = require('../../../services/nodeMailer')
 
 const postControllerUsers = async(data, firebaseUrls) =>{
     const saltRounds = 8;
