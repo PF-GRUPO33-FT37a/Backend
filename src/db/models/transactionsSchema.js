@@ -19,6 +19,9 @@ const transactionsSchema = new Schema({
                 ref: 'products',
                 required: true,
             },
+            size:{
+                type:String
+            },
             cant:{
                 type: Number,
                 required:true
