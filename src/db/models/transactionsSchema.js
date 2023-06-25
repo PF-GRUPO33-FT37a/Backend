@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const autopopulate = require('mongoose-autopopulate');
 
 const transactionsSchema = new Schema({
     idUser: {
@@ -15,8 +16,9 @@ const transactionsSchema = new Schema({
        type:[
         {
             productId:{
-                type: [mongoose.Types.ObjectId],
-                ref: 'products',
+                type: mongoose.Types.ObjectId,
+                ref: 'ProductsPueba',
+                autopopulate:true,
                 required: true,
             },
             size:{
@@ -40,6 +42,9 @@ const transactionsSchema = new Schema({
 },{
     versionKey: false
 });
+
+
+transactionsSchema.plugin(autopopulate);
 
 const Transactions = mongoose.model('Transactions', transactionsSchema);
 
