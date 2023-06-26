@@ -17,7 +17,7 @@ const transactionsSchema = new Schema({
         {
             productId:{
                 type: mongoose.Types.ObjectId,
-                ref: 'ProductsPueba',
+                ref: 'Products',
                 autopopulate:true,
                 required: true,
             },
