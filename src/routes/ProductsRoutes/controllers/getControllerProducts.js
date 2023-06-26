@@ -6,7 +6,7 @@ const getControllerProducts = async () => {
 		.select({
 			name: 1,
 			images: { $slice: -1 },
-			'size.size': 1,
+			size: 1,
 			brand: 1,
 			price: 1,
 		})
@@ -14,7 +14,14 @@ const getControllerProducts = async () => {
 		.exec();
 
 	const products = [];
-	for (const product of allProducts) {
+	for (let product of allProducts) {
+		let stockSum = 0
+		for (let i = 0; i < product.size.length; i++) { 
+		const obj = product.size[i];
+		obj.stock = parseInt(obj.stock); 
+		stockSum += obj.stock;
+	  }
+	  product = {...product,stock:stockSum}
 		const sameCodeProducts = await Products.find({
 			articleCode: product.articleCode,
 		})
