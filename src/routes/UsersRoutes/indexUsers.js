@@ -9,8 +9,8 @@ const getByEmailHandler = require('./handlers/getByEmailHandler');
 const users = Router();
 
 users.get('/login', loginHandler);
-users.get('/:email', getByEmailHandler);
 users.get('/:id', getIdHandlerUser);
+users.get('/auth/:email', getByEmailHandler);
 users.put('/:id', putHandlerUser);
 users.get('/', getHandlerUsers);
 users.post('/', postHandlerUsers);
