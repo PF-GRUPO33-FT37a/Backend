@@ -7,10 +7,11 @@ const postControllerProduct = async (data, firebaseUrls) => {
 	let arr = [];
 	for (let i = 0; i < data.size.length; i++) {
 		const obj = JSON.parse(data.size[i]);
+		obj.stock = parseInt(obj.stock); 
 		arr.push(obj);
 		console.log(obj);
 		stockSum += obj.stock;
-	}
+	  }
 	console.log(stockSum);
 	const product = {
 		name: data.name,

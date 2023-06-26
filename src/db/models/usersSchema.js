@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const autopopulate = require('mongoose-autopopulate');
 
 const usersScheme = new Schema(
 	{
@@ -45,10 +46,11 @@ const usersScheme = new Schema(
 		date: {
 			type: String,
 		},
-		// purchaseHistory:[{
-		//     type: mongoose.Types.ObjectId,
-		//     ref: 'transactions',
-		// }],
+		purchaseHistory: {
+			type: [mongoose.Types.ObjectId],
+			ref: 'Transactions',
+			autopopulate: true,
+		},
 		isActive: {
 			type: Boolean,
 			default: true,
