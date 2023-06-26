@@ -1,5 +1,5 @@
 const Transactions = require('../../../db/models/transactionsSchema')
-const ProductsPrueba = require('../../../db/models/productsPrubeScheme')
+const Products = require('../../../db/models/productSchema')
 const Users = require('../../../db/models/usersSchema')
 
 const postTransactionController = async (data) => {
@@ -22,7 +22,7 @@ const postTransactionController = async (data) => {
     for (const product of products) {
       const { productId, size, cant } = product;
   
-      const updateProduct = await ProductsPrueba.findOneAndUpdate(
+      const updateProduct = await Products.findOneAndUpdate(
         { _id: productId, "size.size": size },
         { $inc: { "size.$.stock": -cant } },
         { new: true }
