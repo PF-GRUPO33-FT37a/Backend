@@ -5,7 +5,6 @@ const sendEmail = require('../../../services/nodeMailer')
 const postControllerUsers = async(data, firebaseUrls) =>{
     const saltRounds = 8;
     let password = await bcrypt.hash(data.password, saltRounds)
-    console.log(password)
     let user = {
         name: data.name,
         email: data.email,
