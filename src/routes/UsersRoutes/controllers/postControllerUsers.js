@@ -1,6 +1,6 @@
-const Users = require('../../../db/models/usersSchema')
-const bcrypt = require('bcryptjs')
-const sendEmail = require('../../../services/nodeMailer')
+const Users = require('../../../db/models/usersSchema');
+const bcrypt = require('bcryptjs');
+const { sendEmail } = require('../../../services/nodeMailer');
 
 const postControllerUsers = async(data, firebaseUrls) =>{
     const saltRounds = 8;
@@ -17,10 +17,10 @@ const postControllerUsers = async(data, firebaseUrls) =>{
         date: data.date
     } 
 
-    await sendEmail(data.email)
+	await sendEmail(data.email);
 
-    let infoUser = await Users.create(user);
-    return infoUser 
-}
+	let infoUser = await Users.create(user);
+	return infoUser;
+};
 //comentario
-module.exports = postControllerUsers
+module.exports = postControllerUsers;
