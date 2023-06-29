@@ -63,6 +63,14 @@ const usersScheme = new Schema(
 			type: Boolean,
 			default: false,
 		},
+		validated:{
+			type:Boolean,
+			default:false
+		},
+		cpDesc:{
+			type: Number,
+			default: 1
+		}
 	},
 	{
 		versionKey: false,
