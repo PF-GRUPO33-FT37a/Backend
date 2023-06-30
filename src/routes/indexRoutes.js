@@ -20,19 +20,12 @@ router.use('/payment',paymentMethodRoutes)
 router.use('/purchase', purchaseRoutes)
 router.post('/produuctsPrueba', async(req,res)=>{
     try{
-        let data = req.body
+		let firebaseUrls;
+		if (req.files) {
+			firebaseUrls = req.files.map((file) => file.firebaseUrl);
+		}
 	const product = {
-		name: data.name,
-		category: data.category,
-		gender: data.gender,
-		size: data.size,
-		color: data.color,
-		season: data.season,
-		images: data.images,
-		stock: data.stock,
-		brand: data.brand,
-		price: data.price,
-		articleCode: data.articleCode,
+		images: firebaseUrls,
 	};
 
 	const result = ProductsPrueba.create(product);
