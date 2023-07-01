@@ -17,6 +17,8 @@ const getControllerSearch = async (query) => {
 				};
 			} else if (['name'].includes(key)) {
 				filter[key] = { $regex: new RegExp(query[key], 'i') };
+			} else if (key === 'price') {
+				filter['price'] = { $lt: parseInt(query[key]) };
 			}
 		}
 	}
