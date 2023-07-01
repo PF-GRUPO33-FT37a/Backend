@@ -9,19 +9,20 @@ const getControllerProducts = async () => {
 			size: 1,
 			brand: 1,
 			price: 1,
+			isActive: 1,
 		})
 		.lean()
 		.exec();
 
 	const products = [];
 	for (let product of allProducts) {
-		let stockSum = 0
-		for (let i = 0; i < product.size.length; i++) { 
-		const obj = product.size[i];
-		obj.stock = parseInt(obj.stock); 
-		stockSum += obj.stock;
-	  }
-	  product = {...product,stock:stockSum}
+		let stockSum = 0;
+		for (let i = 0; i < product.size.length; i++) {
+			const obj = product.size[i];
+			obj.stock = parseInt(obj.stock);
+			stockSum += obj.stock;
+		}
+		product = { ...product, stock: stockSum };
 		const sameCodeProducts = await Products.find({
 			articleCode: product.articleCode,
 		})
