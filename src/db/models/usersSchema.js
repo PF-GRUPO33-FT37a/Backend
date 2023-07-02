@@ -78,6 +78,7 @@ const usersScheme = new Schema(
 );
 
 usersScheme.index({ email: 1 }, { unique: true });
+usersScheme.plugin(autopopulate);
 
 usersScheme.plugin(autopopulate);
 
