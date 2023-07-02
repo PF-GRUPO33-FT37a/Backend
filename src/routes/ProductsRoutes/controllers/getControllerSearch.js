@@ -58,7 +58,12 @@ const getControllerSearch = async (query) => {
 		delete productWithSameCode._doc;
 		products.push(productWithSameCode);
 	}
-	return products;
+	if(products.length>0){
+
+		return products;
+	}else{
+		throw Error("no products")
+	}
 };
 
 module.exports = getControllerSearch;
