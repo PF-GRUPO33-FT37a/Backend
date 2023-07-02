@@ -25,9 +25,11 @@ const postControllerPurchase =  (data) => {
         date: dataPurchase.date,
         items: dataPurchase.products,
         subtotal: total,
-        paid: 0,
+        desc: dataPurchase.desc*100,
         invoice_nr: 1234
     }
+
+    console.log(invoice.desc)
 
     async function createInvoice(invoice) {
         let doc = new PDFDocument();
@@ -116,7 +118,7 @@ const postControllerPurchase =  (data) => {
             .text(invoice.date, 150, customerInformationTop + 15)
             .text("Amount total:", 50, customerInformationTop + 30)
             .text(
-                formatCurrency(invoice.subtotal - invoice.paid),
+                `- ${formatCurrency(invoice.subtotal - invoice.desc)}`,
                 150,
                 customerInformationTop + 30
             )
@@ -191,7 +193,7 @@ const postControllerPurchase =  (data) => {
             "",
             "Cp.Desc",
             "",
-            formatCurrency(invoice.paid)
+            formatCurrency(invoice.desc)
         );
 
         const duePosition = paidToDatePosition + 25;
@@ -203,7 +205,7 @@ const postControllerPurchase =  (data) => {
             "",
             "Total",
             "",
-            formatCurrency(invoice.subtotal - invoice.paid)
+            formatCurrency(invoice.subtotal - invoice.desc)
         );
         doc.font("Helvetica");
     }
