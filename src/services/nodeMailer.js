@@ -40,13 +40,20 @@ const sendEmail = async (toEmail) => {
     return;
 };
 
-const sendBuy = async (toEmail) => {
+const sendBuy = async (toEmail, pdf) => {
     const transporterConection = transporter();
     const info = await transporterConection.sendMail({
         from: '"FashionFinds" <desarrolloBackendGrupo33@gmail.com>',
         to: `${toEmail}`,
         subject: "FashionFinds",
-        html: templatePostBuy(),
+        html:templatePostBuy(),
+        attachments: [
+            {
+                filename: 'boleta.pdf',
+                content: pdf,
+            },
+        ],
+        
     });
     return;
 };
