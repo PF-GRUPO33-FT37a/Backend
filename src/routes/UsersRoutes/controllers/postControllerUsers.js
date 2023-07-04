@@ -1,5 +1,8 @@
+require("dotenv").config();
+const { TOKEN_KEY } = process.env;
 const Users = require('../../../db/models/usersSchema');
 const bcrypt = require('bcryptjs');
+const jwt = require("jsonwebtoken");
 const { sendEmail } = require('../../../services/nodeMailer');
 
 const postControllerUsers = async(data, firebaseUrls) =>{
@@ -20,6 +23,21 @@ const postControllerUsers = async(data, firebaseUrls) =>{
 	await sendEmail(data.email);
 
 	let infoUser = await Users.create(user);
+
+    const token = jwt.sign(
+        {
+          _id: infoUser._id,
+          email: infoUser.email,
+          isAdmin: infoUser.isAdmin,
+        },
+        TOKEN_KEY,
+        {
+          expiresIn: "7d",
+        }
+      );
+
+      infoUser = {...infoUser.toObject(), token:token}
+
 	return infoUser;
 };
 //comentario
