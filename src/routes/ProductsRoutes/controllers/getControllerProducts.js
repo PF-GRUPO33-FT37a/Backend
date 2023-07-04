@@ -2,17 +2,7 @@ const Products = require('../../../db/models/productSchema');
 const modelateDataPaginado = require('../../../utils/modelateDataPaginate');
 
 const getControllerProducts = async () => {
-	const allProducts = await Products.find({})
-		.select({
-			name: 1,
-			images: { $slice: -1 },
-			size: 1,
-			brand: 1,
-			price: 1,
-			isActive: 1,
-		})
-		.lean()
-		.exec();
+	const allProducts = await Products.find({}).lean().exec();
 
 	const products = [];
 	for (let product of allProducts) {
