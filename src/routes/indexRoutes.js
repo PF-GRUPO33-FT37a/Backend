@@ -7,6 +7,7 @@ const reviewsRoutes = require('./ReviewsRoutes/indexReviews')
 const paymentMethodRoutes = require('./PaymentRoutes/indexPayment')
 const purchaseRoutes = require('./PurchaseRoutes/indexPurchase')
 const transactionsRoutes = require('./TransactionsRoutes/indexTransactions')
+const contactUs = require('./contactUsRoutes/indexContactUs')
 
 
 const router = Router();
@@ -18,6 +19,7 @@ router.use('/reviews', reviewsRoutes);
 router.use('/transactions', transactionsRoutes)
 router.use('/payment',paymentMethodRoutes)
 router.use('/purchase', purchaseRoutes)
+router.use('/contactUs', contactUs)
 router.post('/produuctsPrueba', async(req,res)=>{
     try{
 		let firebaseUrls;
