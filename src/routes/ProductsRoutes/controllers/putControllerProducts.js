@@ -3,14 +3,14 @@ const Products = require('../../../db/models/productSchema');
 const putControllerProducts = async (id, updatedData, firebaseUrls) => {
 	let stockSum = 0;
 	let arr = [];
-
 	if (updatedData.size) {
-		arr = updatedData.size.map((size) => {
-			const obj = JSON.parse(size);
+		for (let i = 0; i < updatedData.size.length; i++) {
+			const obj = JSON.parse(updatedData.size[i]);
 			obj.stock = parseInt(obj.stock);
+			arr.push(obj);
 			stockSum += obj.stock;
-			return obj;
-		});
+		}
+		return obj;
 	}
 
 	const updatedFields = {
