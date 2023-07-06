@@ -10,7 +10,6 @@ const putControllerProducts = async (id, updatedData, firebaseUrls) => {
 			arr.push(obj);
 			stockSum += obj.stock;
 		}
-		return obj;
 	}
 
 	const updatedFields = {
